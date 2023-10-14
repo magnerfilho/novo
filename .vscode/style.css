@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(./assets/sol.svg);
+}
+
+body {
+  /*
+  background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  */
+
+  /*background: color image repeat position/size */
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh;
+}
+
+/* 
+O caracter * é um seletor universal, fará com que esta configuração seja aplicada para todas as demais funções "BODY", como moedlo abaixo:
+*/
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  border: 0px solid greenyellow;
+  width: 100%;
+  max-width: 588px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+  /*
+  border: 1px solid black;
+  margin-right: auto;
+  margin-left: auto;
+  /*
+  marging = borda do elemento
+  padding = preenchimento do elemento*/
+}
+
+/*
+  display: none; (some com o display da tela)
+  display: block; (deixa a caixa na largura da TELA)
+  display: inline-block (mantem propriedades INLINE mas tambem deixa acrescentar algumas propriedades BLOCK)
+  */
+/*PROFILE*/
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+}
+
+/*alguns elementos são BLOCK  e outros são INLINE
+*/
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+/*SWITCH*/
+#switch {
+  border: 0px solid greenyellow;
+  position: relative;
+  width: 64px;
+
+  margin: 4px auto;
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  /*Z-INDEX: indica qual andar ficará o tópico*/
+  transform: translateY(-50%);
+  animation: slide-back 0.6s;
+}
+.light #switch button {
+  animation: slide-in 0.6s forwards;
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  /* surface-color-dark-mode */
+  background: var(--surface-color);
+  /* stroke-color-dark-mode*/
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* links */
+ul {
+  list-style: none;
+  /*
+  display: flex;
+  flex-direction: row-;
+   gap = COLOCA ESPAÇO ENTRE OS CONTEINERS 
+  gap: 10px;
+  */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* GAP = COLOCA ESPAÇO ENTRE OS ELEMENTOS
+  */
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  border: 0px solid green;
+  /*
+  display: flex;
+  */
+  justify-content: center;
+  align-items: center;
+  /* ALINHAR ITENS NO CENTRO DO "MAIN"*/
+  /*
+  height: 52px;
+  ALTURA
+  */
+  padding: 16px 24px;
+
+  background: var(--surface-color-hover);
+  border: 2px solid var(--stroke-color);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  /* webkit = vendor prefix = prefixo que alguns browsers vao usar para liberar*/
+  border-radius: 10px;
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: background 0.2s;
+}
+
+/*pseudo-selector*/
+ul li a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--stroke-color);
+}
+
+/* social links */
+#social-links {
+  display: flex;
+  justify-content: center;
+
+  padding: 24px 0;
+
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  transition: background 1s;
+  border-radius: 50%;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpg);
+  }
+  .light {
+    --bg-url: url(./assets/bg-desktop-light.jpg);
+  }
+}
+
+/*
+**ANIMATION**
+  @keyframes
+*/
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
+/*ANOTAÇÕES:
+o que é javascript? é uma linguagem de programação
+que é interpretada e executada pelos navegadores.
+qualquer tipo de navegador ja tem java script
+
+*TRIADE DA PROGRAMAÇÃO*
+HTML é a estrutura
+CSS é a beleza
+JS é a inteligencia
+
+JAVASCRIPT não é JAVA
+
+PORQUE APRENDER JS?
+
+O QUE É MEDIA QUERIES???
+at room - tudo que começa com @ é um at room
+
+*/
